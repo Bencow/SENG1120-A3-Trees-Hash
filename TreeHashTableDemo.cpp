@@ -13,7 +13,7 @@ using namespace std;
 
 int main()
 {
-	//clock_t t;
+	clock_t t;
 
 	// if you are using class templates
 	BSTree<int> treeValues;
@@ -23,7 +23,7 @@ int main()
 	int numberOfElements = (int)sizeof(vectorMarks)/(int)sizeof(vectorMarks[0]);
 	
 	cout << "==================" << endl << "BINARY SEARCH TREE" << endl;
-	//t = clock(); // gets current time
+	t = clock(); // gets current time
 	
 	for (int i=0; i<numberOfElements; i++) 
 	{

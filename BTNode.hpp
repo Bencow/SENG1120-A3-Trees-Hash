@@ -40,3 +40,7 @@ BTNode<T>::BTNode(const T& data, BTNode* left, BTNode* right)
 	m_right = right;
 	m_parent = NULL;
 }
+//destructor
+template<typename T>
+BTNode<T>::~BTNode()
+{}

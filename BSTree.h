@@ -26,7 +26,7 @@ private:
 	//private functions
 	BTNode<T>* search(T target);
 	void internalAdd(BTNode<T>* current, T val);
-
+	void internalRemoveAll(BTNode<T>* current);
 
 public:
 	BSTree();

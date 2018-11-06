@@ -42,7 +42,26 @@ void BSTree<T>::add(T val)
 template <typename T>
 BSTree<T>::~BSTree()
 {
+	if(!empty())
+	{
+		//start recursive call to remove all the nodes
+		internalRemoveAll(m_root);
+	}
+}
 
+template <typename T>
+void BSTree<T>::internalRemoveAll(BTNode<T>* current)
+{
+	//post order implementation !
+
+	//if there is a left child, remove it
+	if(current->get_left() != NULL)
+		internalRemoveAll(current->get_left());
+	//if there is a right child, remove it
+	if(current->get_right() != NULL)
+		internalRemoveAll(current->get_right());
+	//then remove the current node
+	delete current;
 }
 
 
