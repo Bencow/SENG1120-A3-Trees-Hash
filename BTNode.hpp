@@ -24,6 +24,15 @@ BTNode<T>::BTNode(const T& data)
 }
 
 template<typename T>
+BTNode<T>::BTNode(const T& data, BTNode<T>* parent)
+{
+	m_data = data;
+	m_left = NULL;
+	m_right = NULL;
+	m_parent = parent;
+}
+
+template<typename T>
 BTNode<T>::BTNode(const T& data, BTNode* left, BTNode* right)
 {
 	m_data = data;

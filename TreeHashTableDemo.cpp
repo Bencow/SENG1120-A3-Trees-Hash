@@ -24,7 +24,12 @@ int main()
 	
 	cout << "==================" << endl << "BINARY SEARCH TREE" << endl;
 	//t = clock(); // gets current time
-	for (int i=0; i<numberOfElements; i++) {treeValues.add(vectorMarks[i]);} // populates the tree.
+	
+	for (int i=0; i<numberOfElements; i++) 
+	{
+		treeValues.add(vectorMarks[i]);
+	} // populates the tree.
+ 
     cout << "Initial tree: " << treeValues << endl; // prints the contents of the tree.
 	/*
     for (int i=0; i<100000; i++)

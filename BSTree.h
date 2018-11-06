@@ -8,6 +8,8 @@
 #ifndef BSTREE_H
 #define BSTREE_H
 
+#include <iostream>
+
 #include "BTNode.h"
 
 
@@ -23,7 +25,7 @@ private:
 
 	//private functions
 	BTNode<T>* search(T target);
-	void internalAdd(BTNode<T>* node, T val);
+	void internalAdd(BTNode<T>* current, T val);
 
 
 public:

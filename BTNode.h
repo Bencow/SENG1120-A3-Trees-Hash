@@ -22,6 +22,7 @@ private:
 public:
 	BTNode();
 	BTNode(const T& data);
+	BTNode(const T& data, BTNode<T>* parent);
 	BTNode(const T& data, BTNode<T>* left, BTNode<T>* right);
 	~BTNode();
 

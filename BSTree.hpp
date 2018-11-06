@@ -9,20 +9,21 @@ template <typename T>
 BSTree<T>::BSTree()
 {
 	m_root = NULL;
+	m_size = 0;
 }
 
 template <typename T>
 BSTree<T>::BSTree(BTNode<T>* root)
 {
 	m_root = root;
+	m_size = 1;
 }
 
 template <typename T>
 void BSTree<T>::add(T val)
 {
 	//allocate a new node
-	BTNode<T>* new_node = new BTNode<T>;
-	new_node->set_data(val);
+	BTNode<T>* new_node = new BTNode<T>(val);
 
 	//if the tree is empty
 	if(empty())
@@ -33,9 +34,8 @@ void BSTree<T>::add(T val)
 	else//tree has at least one element
 	{
 		//start the recursive call
-		internalAdd(new_node, val);
+		internalAdd(m_root, val);
 	}
-
 	m_size++;
 }
 
@@ -45,33 +45,35 @@ BSTree<T>::~BSTree()
 
 }
 
+
+
 template <typename T>
-void BSTree<T>::internalAdd(BTNode<T>* node, T val)
+void BSTree<T>::internalAdd(BTNode<T>* current, T val)
 {
 	//if the value to insert is greater than the current node
-	if(val > node->get_data())
+	if(val > current->get_data())
 	{
-		if(node->get_right() == NULL)
+		if(current->get_right() == NULL)
 		{
-			BTNode<T>* new_node = new BTNode<T>;
-			new_node->set_data(val);
+			//create a new node with val and the current node as parent
+			BTNode<T>* new_node = new BTNode<T>(val, current);
 			//insert the new node here
-			node->set_right(new_node);
+			current->set_right(new_node);
 		}
 		else
-			internalAdd(node->get_right(), val);
+			internalAdd(current->get_right(), val);
 	}
 	else//the value is lower or equal to the current node
 	{
-		if(node->get_left() == NULL)
+		if(current->get_left() == NULL)
 		{
-			BTNode<T>* new_node = new BTNode<T>;
-			new_node->set_data(val);
+			//create a new node with val and the current node as parent
+			BTNode<T>* new_node = new BTNode<T>(val, current);
 			//insert the new node here
-			node->set_left(new_node);
+			current->set_left(new_node);
 		}
 		else
-			internalAdd(node->get_left(), val);
+			internalAdd(current->get_left(), val);
 	}
 }
 
