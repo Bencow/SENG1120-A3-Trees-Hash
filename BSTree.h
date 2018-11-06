@@ -26,6 +26,7 @@ private:
 	//private functions
 	BTNode<T>* search(T target);
 	void internalAdd(BTNode<T>* current, T val);
+	void internalRemove(BTNode<T>* current, T target);
 	void internalRemoveAll(BTNode<T>* current);
 
 public:
@@ -41,11 +42,9 @@ public:
 
 	//return the value stored in the current node
 	T get_current();
-	
-	//TODO:
-	int count()const;
 	void add(T m_data);
 	void remove(T m_data);
+	
 
 
 };

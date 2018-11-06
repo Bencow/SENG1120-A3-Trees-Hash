@@ -31,7 +31,7 @@ int main()
 	} // populates the tree.
  
     cout << "Initial tree: " << treeValues << endl; // prints the contents of the tree.
-	/*
+	
     for (int i=0; i<100000; i++)
     { // add and remove over and over again
         treeValues.remove(123454); treeValues.remove(787626); treeValues.remove(678760); treeValues.remove(22670); treeValues.remove(56534); treeValues.remove(1456769); treeValues.remove(5465443);
@@ -40,7 +40,7 @@ int main()
 	cout << "Final tree  : " << treeValues << endl << endl; // prints the contents of the tree.
 	cout << "Time elapsed: " << (clock() - t)/1000.0 << " seconds" << endl; // prints elapsed time.
 	cout << "Time per ins/del operation: " << 1000.0*(double)(clock() - t)/(double)(100000*14) << " milliseconds." << endl << endl;
-	*/
+	
 	/*
 	cout << "==================" << endl << "HASH TABLE" << endl;
 	t = clock(); // gets current time

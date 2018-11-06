@@ -20,26 +20,6 @@ BSTree<T>::BSTree(BTNode<T>* root)
 }
 
 template <typename T>
-void BSTree<T>::add(T val)
-{
-	//allocate a new node
-	BTNode<T>* new_node = new BTNode<T>(val);
-
-	//if the tree is empty
-	if(empty())
-	{
-		//put the new node in root position
-		m_root = new_node;
-	}
-	else//tree has at least one element
-	{
-		//start the recursive call
-		internalAdd(m_root, val);
-	}
-	m_size++;
-}
-
-template <typename T>
 BSTree<T>::~BSTree()
 {
 	if(!empty())
@@ -65,6 +45,52 @@ void BSTree<T>::internalRemoveAll(BTNode<T>* current)
 }
 
 
+template <typename T>
+void BSTree<T>::remove(T target)
+{
+	if(!empty())
+	{
+		if(m_root->get_data() == target)
+			//aie aie aie
+		else
+		{
+			
+		}
+	}
+	else
+		std::cout << "Error, try to remove a node from an empty tree"
+}
+
+
+
+template <typename T>
+void BSTree<T>::internalRemove(BTNode<T>* current, T target)
+{
+
+}
+
+
+
+
+template <typename T>
+void BSTree<T>::add(T val)
+{
+	//allocate a new node
+	BTNode<T>* new_node = new BTNode<T>(val);
+
+	//if the tree is empty
+	if(empty())
+	{
+		//put the new node in root position
+		m_root = new_node;
+	}
+	else//tree has at least one element
+	{
+		//start the recursive call
+		internalAdd(m_root, val);
+	}
+	m_size++;
+}
 
 template <typename T>
 void BSTree<T>::internalAdd(BTNode<T>* current, T val)
