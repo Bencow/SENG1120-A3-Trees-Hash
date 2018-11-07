@@ -28,10 +28,7 @@ private:
 	//Pre conditions:
 	//Post conditions:
 	BTNode<T>* search(T target, BTNode<T>* current);
-	//Pre conditions:
-	//Post conditions:
-	BTNode<T>* search_smallest(BTNode<T>* current);
-	BTNode<T>* search_biggest(BTNode<T>* current);
+
 	//Pre conditions:
 	//Post conditions:
 	void internalAdd(BTNode<T>* current, BTNode<T>* new_node);
@@ -61,7 +58,10 @@ public:
 	//Post conditions:
 	std::ostream& displayNode(BTNode<T>* current, std::ostream& out)const;
 
-
+	//Pre conditions:
+	//Post conditions:
+	BTNode<T>* search_smallest(BTNode<T>* current);
+	BTNode<T>* search_biggest(BTNode<T>* current);
 
 	//Pre conditions:
 	//Post conditions:
@@ -73,6 +73,8 @@ public:
 	//Pre conditions:
 	//Post conditions:
 	void remove(T m_data);
+
+	void test();
 	
 
 

@@ -32,7 +32,9 @@ int main()
  
     cout << "Initial tree: " << treeValues << endl; // prints the contents of the tree.
 	
-    treeValues.remove(123454);
+    treeValues.test();
+
+    //treeValues.remove(123454);
     cout << "Initial tree: " << treeValues << endl; // prints the contents of the tree.
 
 	/*

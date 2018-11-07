@@ -284,3 +284,10 @@ std::ostream& operator<<(std::ostream& out, const BSTree<T>& tree)
 	return tree.display(out);
 }
 
+
+template <typename T>
+void BSTree<T>::test()
+{
+	std::cout << search_smallest(m_root)->get_data() << std::endl;
+	std::cout << search_biggest(m_root)->get_data() << std::endl;
+}
