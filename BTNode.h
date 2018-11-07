@@ -36,6 +36,7 @@ public:
 	BTNode<T>* get_parent(){ return m_parent; }
 	BTNode<T>* get_right(){ return m_right; }
 	BTNode<T>* get_left(){ return m_left; }
+	bool is_a_leaf()const;
 
 
 };

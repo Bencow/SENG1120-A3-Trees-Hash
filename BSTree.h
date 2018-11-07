@@ -24,7 +24,9 @@ private:
 	int m_size;
 
 	//private functions
-	BTNode<T>* search(T target);
+	BTNode<T>* search(T target, BTNode<T>* current);
+	BTNode<T>* search_smallest_right(BTNode<T>* current);
+
 	void internalAdd(BTNode<T>* current, T val);
 	void internalRemove(BTNode<T>* current, T target);
 	void internalRemoveAll(BTNode<T>* current);

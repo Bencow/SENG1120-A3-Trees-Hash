@@ -44,3 +44,12 @@ BTNode<T>::BTNode(const T& data, BTNode* left, BTNode* right)
 template<typename T>
 BTNode<T>::~BTNode()
 {}
+
+template<typename T>
+bool BTNode<T>::is_a_leaf()const
+{
+	if(m_right == NULL && m_left == NULL)
+		return true;
+	else
+		return false;
+}

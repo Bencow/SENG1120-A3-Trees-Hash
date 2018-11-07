@@ -50,15 +50,12 @@ void BSTree<T>::remove(T target)
 {
 	if(!empty())
 	{
-		if(m_root->get_data() == target)
-			//aie aie aie
-		else
-		{
-			
-		}
+
+		BTNode<T>* target_node = search(target, m_root);
+		//internalRemove(target_node);
 	}
 	else
-		std::cout << "Error, try to remove a node from an empty tree"
+		std::cout << "Error, try to remove a node from an empty tree" << std::endl;
 }
 
 
@@ -66,10 +63,65 @@ void BSTree<T>::remove(T target)
 template <typename T>
 void BSTree<T>::internalRemove(BTNode<T>* current, T target)
 {
+	//find the smallest element on the right of the target node
+	BTNode<T>* smallest = search_smallest_right(current);
+	//put the value of smallest in the target
+	current->set_data(smallest->get_data());
+
+	//if this element has no children
+	if(smallest->is_a_leaf())
+	{
+		// get a pointer to its parent
+		BTNode<T>* parent = smallest->get_parent();
+		//if smallest is the left children of the parent
+		if(parent->get_left() == smallest)
+			parent->set_left(NULL);//reset parent's left
+		else if(parent->get_right() == smallest)
+			parent->set_right(NULL);//reset parent's right
+
+		//and delete the children
+		delete smallest;
+	}
+	//the current element has at least one children
+	else
+		internalRemove(smallest);//recursive call (find the smallest element on the right of this node and remove it)
+}
+
+template <typename T>
+BTNode<T>* BSTree<T>::search(T target, BTNode<T>* current)
+{
+	BTNode<T>* result;
+	//if the current node is the one we're looking for
+	if(current->get_data() == target)
+	{
+		std::cout << target << " trouvé ! parent is " << current->get_parent()->get_data() << std::endl;
+		return current;
+	}
+	else//current is not the one
+	{
+		if(current->get_left() != NULL)
+		{
+			result = search(target, current->get_left());
+			if(result != NULL)
+				return result;
+		}
+		if(current->get_right() != NULL)
+		{
+			result = search(target, current->get_right());
+			if(result != NULL)
+				return result;
+		}
+		return NULL;
+	}
 
 }
 
 
+template <typename T>
+BTNode<T>* BSTree<T>::search_smallest_right(BTNode<T>* current)
+{
+
+}
 
 
 template <typename T>
@@ -131,19 +183,6 @@ bool BSTree<T>::empty()const
 		return true;
 	else
 		return false;
-}
-
-template <typename T>
-BTNode<T>* BSTree<T>::search(T target)
-{
-	//if the tree is empty, return NULL
-	if(empty())
-		return NULL;
-	else
-	{
-		
-
-	}
 }
 
 
