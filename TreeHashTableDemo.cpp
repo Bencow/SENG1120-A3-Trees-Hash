@@ -20,7 +20,7 @@ int main()
 	//HTable<int> tableValues;
 
 	//int vectorMarks[] = {123454, 23418, 787626, 56534, 879840, 5465443, 5650, 678760, 3456462, 34465, 97567, 345169, 1456769, 867570, 565471};
-	int vectorMarks[] = {5, 3, 2, 1, 4, 6, 11, 8, 7, 9, 10, 14 };
+	int vectorMarks[] = {5, 3, 2, 1, 4, 10, 7, 8, 15};
 
 	int numberOfElements = (int)sizeof(vectorMarks)/(int)sizeof(vectorMarks[0]);
 	
