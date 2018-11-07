@@ -2,7 +2,7 @@
  * Author: Benoit Coville
  * student number: c3316165
  * Course: SENG1120 Data Structures 
- * Assignment 3; Binary Search Tree & Hashtable
+ * Assignment 3: Binary Search Tree & Hashtable
  */
 
 #ifndef BTNODE_H
@@ -36,6 +36,8 @@ public:
 	BTNode<T>* get_parent(){ return m_parent; }
 	BTNode<T>* get_right(){ return m_right; }
 	BTNode<T>* get_left(){ return m_left; }
+	//Pre conditions:
+	//Post conditions:
 	bool is_a_leaf()const;
 
 
