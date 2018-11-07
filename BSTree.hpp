@@ -53,7 +53,9 @@ void BSTree<T>::remove(T target)
 		BTNode<T>* target_node = search(target, m_root);
 
 		if(target_node == NULL)
-			std::cout << target << " is not in the tree" << std::endl;
+		{
+			// std::cout << target << " is not in the tree" << std::endl;
+		}
 		else
 		{
 			//if this element has no children
@@ -66,7 +68,6 @@ void BSTree<T>::remove(T target)
 					parent->set_left(NULL);//reset parent's left
 				else if(parent->get_right() == target_node)
 					parent->set_right(NULL);//reset parent's right
-
 				//and delete this element
 				delete target_node;
 			}
@@ -158,7 +159,6 @@ BTNode<T>* BSTree<T>::search(T target, BTNode<T>* current)
 	{
 		if(current->is_a_leaf())
 		{
-			std::cout << "pas normal " << current->get_data() <<std::endl;
 			return NULL;
 		}
 		//if the node has a left child
