@@ -156,18 +156,43 @@ BTNode<T>* BSTree<T>::search(T target, BTNode<T>* current)
 	}
 	else//current is not the one
 	{
+		//if the node has a left child
 		if(current->get_left() != NULL)
 		{
+			//check if the child or one of its children are the target 
 			result = search(target, current->get_left());
+			//if the child (or one of its children) is the target
 			if(result != NULL)
 				return result;
+			else//the child hasn't find anything (returned NULL)
+			{
+				//try the left side
+				//if the node has a right child
+				if(current->get_right() != NULL)
+				{
+					//check if the child or one of its children are the target 
+					result = search(target, current->get_right());
+					//if the child (or one of its children) is the target
+					if(result != NULL)
+						return result;
+					else//the target is not one of the child of the current node
+					{
+						//Both children returned NULL, so return NULL
+						return NULL;
+					}
+				}
+			}
 		}
+		//if the node has a right child
 		if(current->get_right() != NULL)
 		{
+			//check if the child or one of its children are the target 
 			result = search(target, current->get_right());
+			//if the child (or one of its children) is the target
 			if(result != NULL)
 				return result;
 		}
+		
 		return NULL;
 	}
 
