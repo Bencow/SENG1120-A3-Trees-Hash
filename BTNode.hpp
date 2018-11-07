@@ -31,7 +31,7 @@ BTNode<T>::BTNode(const T& data, BTNode<T>* parent)
 	m_right = NULL;
 	m_parent = parent;
 }
-
+/*
 template<typename T>
 BTNode<T>::BTNode(const T& data, BTNode* left, BTNode* right)
 {
@@ -39,7 +39,8 @@ BTNode<T>::BTNode(const T& data, BTNode* left, BTNode* right)
 	m_left = left;
 	m_right = right;
 	m_parent = NULL;
-}
+}*/
+
 //destructor
 template<typename T>
 BTNode<T>::~BTNode()

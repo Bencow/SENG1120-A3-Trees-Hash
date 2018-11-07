@@ -23,7 +23,7 @@ public:
 	BTNode();
 	BTNode(const T& data);
 	BTNode(const T& data, BTNode<T>* parent);
-	BTNode(const T& data, BTNode<T>* left, BTNode<T>* right);
+	// BTNode(const T& data, BTNode<T>* left, BTNode<T>* right);
 	~BTNode();
 
 	// Mutators
@@ -42,6 +42,16 @@ public:
 };
 
 #include "BTNode.hpp"
+
+
+
+// void displayPointer(BTNode<T>* p, const std::ostream& out)
+// {
+// 	if(p == NULL)
+// 		out << "NULL";
+// 	else
+// 		out
+// }
 
 
 #endif

@@ -94,7 +94,8 @@ BTNode<T>* BSTree<T>::search(T target, BTNode<T>* current)
 	//if the current node is the one we're looking for
 	if(current->get_data() == target)
 	{
-		std::cout << target << " trouvé ! parent is " << current->get_parent()->get_data() << std::endl;
+		std::cout << current->get_data() << " trouvé ! parent is "; 
+		//std::cout << current->get_parent()->get_data() << std::endl;
 		return current;
 	}
 	else//current is not the one
@@ -129,6 +130,7 @@ void BSTree<T>::add(T val)
 {
 	//allocate a new node
 	BTNode<T>* new_node = new BTNode<T>(val);
+	std::cout << "new node: " << new_node->get_data() << std::endl;
 
 	//if the tree is empty
 	if(empty())
@@ -139,38 +141,41 @@ void BSTree<T>::add(T val)
 	else//tree has at least one element
 	{
 		//start the recursive call
-		internalAdd(m_root, val);
+		internalAdd(m_root, new_node);
 	}
 	m_size++;
 }
 
 template <typename T>
-void BSTree<T>::internalAdd(BTNode<T>* current, T val)
+void BSTree<T>::internalAdd(BTNode<T>* current, BTNode<T>* new_node)
 {
 	//if the value to insert is greater than the current node
-	if(val > current->get_data())
+	if(new_node->get_data() > current->get_data())
 	{
 		if(current->get_right() == NULL)
 		{
 			//create a new node with val and the current node as parent
-			BTNode<T>* new_node = new BTNode<T>(val, current);
+			new_node->set_parent(current);
 			//insert the new node here
 			current->set_right(new_node);
+			std::cout << new_node->get_parent()->get_data() << std::endl;//FAIT PLANTEY
 		}
 		else
-			internalAdd(current->get_right(), val);
+			internalAdd(current->get_right(), new_node);
 	}
 	else//the value is lower or equal to the current node
 	{
 		if(current->get_left() == NULL)
 		{
 			//create a new node with val and the current node as parent
-			BTNode<T>* new_node = new BTNode<T>(val, current);
+			new_node->set_parent(current);
 			//insert the new node here
 			current->set_left(new_node);
+
+			std::cout << new_node->get_parent()->get_data() << std::endl;//FAIT PLANTEY
 		}
 		else
-			internalAdd(current->get_left(), val);
+			internalAdd(current->get_left(), new_node);
 	}
 }
 
@@ -204,17 +209,18 @@ std::ostream& BSTree<T>::display(std::ostream& out)const
 template <typename T>
 std::ostream& BSTree<T>::displayNode(BTNode<T>* current, std::ostream& out)const
 {
+	/*
 	//current node has 2 children
 	if(current->get_left() != NULL && current->get_right() != NULL)
 	{
 		displayNode(current->get_left(), out);
-		out << current->get_data() << " ";
+		out << current->get_data() << " (" << current->get_parent()->get_data() << ") ";
 		displayNode(current->get_right(), out);
 	}
 	//current node has 1 child on the right
 	else if(current->get_left() == NULL && current->get_right() != NULL)
 	{
-		out << current->get_data() << " ";
+		out << current->get_data() <<  " (" << current->get_parent()->get_data() << ") ";
 		displayNode(current->get_right(), out);
 	}
 
@@ -222,12 +228,12 @@ std::ostream& BSTree<T>::displayNode(BTNode<T>* current, std::ostream& out)const
 	else if(current->get_left() != NULL && current->get_right() == NULL)
 	{
 		displayNode(current->get_left(), out);
-		out << current->get_data() << " ";
+		out << current->get_data() <<  " (" << current->get_parent()->get_data() << ") ";
 	}
 	//the current node has no children
 	else if(current->get_left() == NULL && current->get_right() == NULL)
-		out << current->get_data() << " ";
-
+		out << current->get_data() <<  " (" << current->get_parent()->get_data() << ") ";
+*/
 	return out;
 }
 
@@ -237,3 +243,4 @@ std::ostream& operator<<(std::ostream& out, const BSTree<T>& tree)
 {
 	return tree.display(out);
 }
+

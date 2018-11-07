@@ -32,14 +32,14 @@ int main()
  
     cout << "Initial tree: " << treeValues << endl; // prints the contents of the tree.
 	
-    treeValues.remove(123454);
+    //treeValues.remove(123454);
 	/*
     for (int i=0; i<100000; i++)
     { // add and remove over and over again
         treeValues.remove(123454); treeValues.remove(787626); treeValues.remove(678760); treeValues.remove(22670); treeValues.remove(56534); treeValues.remove(1456769); treeValues.remove(5465443);
 	    treeValues.add(123454);treeValues.add(787626);treeValues.add(678760); treeValues.add(56534);treeValues.add(1456769);treeValues.add(5465443);
 	}*/
-	cout << "Final tree  : " << treeValues << endl << endl; // prints the contents of the tree.
+	//cout << "Final tree  : " << treeValues << endl << endl; // prints the contents of the tree.
 	//cout << "Time elapsed: " << (clock() - t)/1000.0 << " seconds" << endl; // prints elapsed time.
 	//cout << "Time per ins/del operation: " << 1000.0*(double)(clock() - t)/(double)(100000*14) << " milliseconds." << endl << endl;
 	

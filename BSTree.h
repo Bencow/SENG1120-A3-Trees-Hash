@@ -27,7 +27,7 @@ private:
 	BTNode<T>* search(T target, BTNode<T>* current);
 	BTNode<T>* search_smallest_right(BTNode<T>* current);
 
-	void internalAdd(BTNode<T>* current, T val);
+	void internalAdd(BTNode<T>* current, BTNode<T>* new_node);
 	void internalRemove(BTNode<T>* current, T target);
 	void internalRemoveAll(BTNode<T>* current);
 
