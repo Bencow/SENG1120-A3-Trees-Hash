@@ -19,7 +19,9 @@ int main()
 	BSTree<int> treeValues;
 	//HTable<int> tableValues;
 
-	int vectorMarks[] = {123454, 23418, 787626, 56534, 879840, 5465443, 5650, 678760, 3456462, 34465, 97567, 345169, 1456769, 867570, 565471};
+	//int vectorMarks[] = {123454, 23418, 787626, 56534, 879840, 5465443, 5650, 678760, 3456462, 34465, 97567, 345169, 1456769, 867570, 565471};
+	int vectorMarks[] = {5, 3, 2, 1, 4, 6, 11, 8, 7, 9, 10, 14 };
+
 	int numberOfElements = (int)sizeof(vectorMarks)/(int)sizeof(vectorMarks[0]);
 	
 	cout << "==================" << endl << "BINARY SEARCH TREE" << endl;
@@ -32,9 +34,9 @@ int main()
  
     cout << "Initial tree: " << treeValues << endl; // prints the contents of the tree.
 	
-    treeValues.test();
+    // treeValues.test();
 
-    //treeValues.remove(123454);
+    treeValues.remove(5);
     cout << "Initial tree: " << treeValues << endl; // prints the contents of the tree.
 
 	/*

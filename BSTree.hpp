@@ -53,7 +53,7 @@ void BSTree<T>::remove(T target)
 		BTNode<T>* target_node = search(target, m_root);
 
 		//if this element has no children
-		if(target_node->is_a_leaf())
+		if(target_node->is_a_leaf())//WORKS
 		{
 			// get a pointer to its parent
 			BTNode<T>* parent = target_node->get_parent();
@@ -84,8 +84,9 @@ void BSTree<T>::internalRemove(BTNode<T>* target_node)
 
 	if(target_node->get_right() != NULL)
 	{
+		std::cout << "hey" << std::endl;
 		//find the smallest element on the right of the target node
-		extreme = search_smallest(target_node->get_right());
+		extreme = search_smallest(target_node->get_right());//return the good value///////////////////////////////////////////////////////////////
 		//put the value of smallest in the target
 		target_node->set_data(extreme->get_data());
 	}
@@ -100,17 +101,19 @@ void BSTree<T>::internalRemove(BTNode<T>* target_node)
 
 	if(extreme->is_a_leaf())
 	{
-		//remove it eazy
+		std::cout << "OUI ! " << std::endl;
+		//remove extreme
 		// get a pointer to its parent
-		BTNode<T>* parent = target_node->get_parent();
-		//if target_node is the left children of the parent
-		if(parent->get_left() == target_node)
+		BTNode<T>* parent = extreme->get_parent();
+
+		//if extreme is the left children of the parent
+		if(parent->get_left() == extreme)
 			parent->set_left(NULL);//reset parent's left
-		else if(parent->get_right() == target_node)
+		else if(parent->get_right() == extreme)
 			parent->set_right(NULL);//reset parent's right
 
 		//and delete this element
-		delete target_node;
+		delete extreme;
 	}
 	else//rebelote
 		internalRemove(extreme);
@@ -123,7 +126,10 @@ BTNode<T>* BSTree<T>::search_smallest(BTNode<T>* current)
 	if(current->get_left() != NULL)
 		return search_smallest(current->get_left());
 	else
+	{
+		std::cout << "small " << current->get_data() << std::endl;
 		return current;
+	}
 }
 
 template <typename T>
@@ -171,7 +177,6 @@ void BSTree<T>::add(T val)
 {
 	//allocate a new node
 	BTNode<T>* new_node = new BTNode<T>(val);
-	std::cout << "new node: " << new_node->get_data() << std::endl;
 
 	//if the tree is empty
 	if(empty())
@@ -199,7 +204,6 @@ void BSTree<T>::internalAdd(BTNode<T>* current, BTNode<T>* new_node)
 			new_node->set_parent(current);
 			//insert the new node here
 			current->set_right(new_node);
-			std::cout << new_node->get_parent()->get_data() << std::endl;
 		}
 		else
 			internalAdd(current->get_right(), new_node);
@@ -212,8 +216,6 @@ void BSTree<T>::internalAdd(BTNode<T>* current, BTNode<T>* new_node)
 			new_node->set_parent(current);
 			//insert the new node here
 			current->set_left(new_node);
-
-			std::cout << new_node->get_parent()->get_data() << std::endl;
 		}
 		else
 			internalAdd(current->get_left(), new_node);
