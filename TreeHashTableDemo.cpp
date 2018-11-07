@@ -19,8 +19,8 @@ int main()
 	BSTree<int> treeValues;
 	//HTable<int> tableValues;
 
-	int vectorMarks[] = {123454, 23418, 787626, 56534, 879840, 5465443, 5650, 678760, 3456462, 34465, 97567, 345169, 1456769, 867570, 565471};
-	//int vectorMarks[] = {5, 3, 2, 1, 4, 10, 7, 8, 15};
+	// int vectorMarks[] = {123454, 23418, 787626, 56534, 879840, 5465443, 5650, 678760, 3456462, 34465, 97567, 345169, 1456769, 867570, 565471};
+	int vectorMarks[] = {5, 3, 2, 1, 4, 10, 7, 8, 15};
 
 	int numberOfElements = (int)sizeof(vectorMarks)/(int)sizeof(vectorMarks[0]);
 	
@@ -31,7 +31,14 @@ int main()
 	{
 		treeValues.add(vectorMarks[i]);
 	} // populates the tree.
- 
+
+	cout << "Initial tree: " << treeValues << endl; // prints the contents of the tree.
+	treeValues.remove(9);
+	cout << "nottial tree: " << treeValues << endl; // prints the contents of the tree.
+
+
+
+ 	/*
     cout << "Initial tree: " << treeValues << endl; // prints the contents of the tree.
     treeValues.remove(123454); 
     cout << "nottial tree: " << treeValues << endl; // prints the contents of the tree.
@@ -47,7 +54,7 @@ int main()
     cout << "nottial tree: " << treeValues << endl; // prints the contents of the tree.
     treeValues.remove(5465443);
     cout << "nottial tree: " << treeValues << endl; // prints the contents of the tree.
-
+	*/
     /*
     for (int i=0; i<100000; i++)
     { // add and remove over and over again
