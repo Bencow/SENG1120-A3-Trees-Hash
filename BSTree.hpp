@@ -50,41 +50,89 @@ void BSTree<T>::remove(T target)
 {
 	if(!empty())
 	{
-
 		BTNode<T>* target_node = search(target, m_root);
-		//internalRemove(target_node);
+
+		//if this element has no children
+		if(target_node->is_a_leaf())
+		{
+			// get a pointer to its parent
+			BTNode<T>* parent = target_node->get_parent();
+			//if target_node is the left children of the parent
+			if(parent->get_left() == target_node)
+				parent->set_left(NULL);//reset parent's left
+			else if(parent->get_right() == target_node)
+				parent->set_right(NULL);//reset parent's right
+
+			//and delete this element
+			delete target_node;
+		}
+		else//this element has at least one child
+			internalRemove(target_node);
 	}
 	else
 		std::cout << "Error, try to remove a node from an empty tree" << std::endl;
 }
 
 
-
+//this function manage the case where we have to remove a node with children
+//we don't actually remove the node, we find the smallest value on the right (if it has a right child) or vice-versa (left) 
+//and put this value in the "removed" node
 template <typename T>
-void BSTree<T>::internalRemove(BTNode<T>* current, T target)
+void BSTree<T>::internalRemove(BTNode<T>* target_node)
 {
-	//find the smallest element on the right of the target node
-	BTNode<T>* smallest = search_smallest_right(current);
-	//put the value of smallest in the target
-	current->set_data(smallest->get_data());
+	BTNode<T>* extreme;
 
-	//if this element has no children
-	if(smallest->is_a_leaf())
+	if(target_node->get_right() != NULL)
 	{
+		//find the smallest element on the right of the target node
+		extreme = search_smallest(target_node->get_right());
+		//put the value of smallest in the target
+		target_node->set_data(extreme->get_data());
+	}
+	//else to avoid doing it 2 times, there is a if but we must enter this condition if we don't enter the first one
+	else if(target_node->get_left() != NULL)
+	{
+		//find the smallest element on the right of the target node
+		extreme = search_biggest(target_node->get_left());
+		//put the value of smallest in the target
+		target_node->set_data(extreme->get_data());
+	}
+
+	if(extreme->is_a_leaf())
+	{
+		//remove it eazy
 		// get a pointer to its parent
-		BTNode<T>* parent = smallest->get_parent();
-		//if smallest is the left children of the parent
-		if(parent->get_left() == smallest)
+		BTNode<T>* parent = target_node->get_parent();
+		//if target_node is the left children of the parent
+		if(parent->get_left() == target_node)
 			parent->set_left(NULL);//reset parent's left
-		else if(parent->get_right() == smallest)
+		else if(parent->get_right() == target_node)
 			parent->set_right(NULL);//reset parent's right
 
-		//and delete the children
-		delete smallest;
+		//and delete this element
+		delete target_node;
 	}
-	//the current element has at least one children
+	else//rebelote
+		internalRemove(extreme);
+}
+
+//Since all the elements on the left on a given element are lower than it, we just have to get the most left element
+template <typename T>
+BTNode<T>* BSTree<T>::search_smallest(BTNode<T>* current)
+{
+	if(current->get_left() != NULL)
+		return search_smallest(current->get_left());
 	else
-		internalRemove(smallest);//recursive call (find the smallest element on the right of this node and remove it)
+		return current;
+}
+
+template <typename T>
+BTNode<T>* BSTree<T>::search_biggest(BTNode<T>* current)
+{
+	if(current->get_right() != NULL)
+		return search_biggest(current->get_right());
+	else
+		return current;
 }
 
 template <typename T>
@@ -94,8 +142,6 @@ BTNode<T>* BSTree<T>::search(T target, BTNode<T>* current)
 	//if the current node is the one we're looking for
 	if(current->get_data() == target)
 	{
-		std::cout << current->get_data() << " trouvé ! parent is "; 
-		//std::cout << current->get_parent()->get_data() << std::endl;
 		return current;
 	}
 	else//current is not the one
@@ -118,11 +164,6 @@ BTNode<T>* BSTree<T>::search(T target, BTNode<T>* current)
 }
 
 
-template <typename T>
-BTNode<T>* BSTree<T>::search_smallest_right(BTNode<T>* current)
-{
-
-}
 
 
 template <typename T>
@@ -158,7 +199,7 @@ void BSTree<T>::internalAdd(BTNode<T>* current, BTNode<T>* new_node)
 			new_node->set_parent(current);
 			//insert the new node here
 			current->set_right(new_node);
-			std::cout << new_node->get_parent()->get_data() << std::endl;//FAIT PLANTEY
+			std::cout << new_node->get_parent()->get_data() << std::endl;
 		}
 		else
 			internalAdd(current->get_right(), new_node);
@@ -172,7 +213,7 @@ void BSTree<T>::internalAdd(BTNode<T>* current, BTNode<T>* new_node)
 			//insert the new node here
 			current->set_left(new_node);
 
-			std::cout << new_node->get_parent()->get_data() << std::endl;//FAIT PLANTEY
+			std::cout << new_node->get_parent()->get_data() << std::endl;
 		}
 		else
 			internalAdd(current->get_left(), new_node);
@@ -209,18 +250,18 @@ std::ostream& BSTree<T>::display(std::ostream& out)const
 template <typename T>
 std::ostream& BSTree<T>::displayNode(BTNode<T>* current, std::ostream& out)const
 {
-	/*
+	
 	//current node has 2 children
 	if(current->get_left() != NULL && current->get_right() != NULL)
 	{
 		displayNode(current->get_left(), out);
-		out << current->get_data() << " (" << current->get_parent()->get_data() << ") ";
+		out << current->get_data() << " ";
 		displayNode(current->get_right(), out);
 	}
 	//current node has 1 child on the right
 	else if(current->get_left() == NULL && current->get_right() != NULL)
 	{
-		out << current->get_data() <<  " (" << current->get_parent()->get_data() << ") ";
+		out << current->get_data() <<  " ";
 		displayNode(current->get_right(), out);
 	}
 
@@ -228,12 +269,11 @@ std::ostream& BSTree<T>::displayNode(BTNode<T>* current, std::ostream& out)const
 	else if(current->get_left() != NULL && current->get_right() == NULL)
 	{
 		displayNode(current->get_left(), out);
-		out << current->get_data() <<  " (" << current->get_parent()->get_data() << ") ";
+		out << current->get_data() <<  " ";
 	}
 	//the current node has no children
 	else if(current->get_left() == NULL && current->get_right() == NULL)
-		out << current->get_data() <<  " (" << current->get_parent()->get_data() << ") ";
-*/
+		out << current->get_data() <<  " ";
 	return out;
 }
 

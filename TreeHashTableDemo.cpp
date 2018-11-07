@@ -32,7 +32,9 @@ int main()
  
     cout << "Initial tree: " << treeValues << endl; // prints the contents of the tree.
 	
-    //treeValues.remove(123454);
+    treeValues.remove(123454);
+    cout << "Initial tree: " << treeValues << endl; // prints the contents of the tree.
+
 	/*
     for (int i=0; i<100000; i++)
     { // add and remove over and over again
