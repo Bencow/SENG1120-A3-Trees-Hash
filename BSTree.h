@@ -57,8 +57,8 @@ private:
 	void internalRemoveAll(BTNode<T>* current);
 
 	//recursive function
-	//Pre conditions:
-	//Post conditions:
+	//Pre conditions: input a valid node of the tree
+	//Post conditions: inorder
 	std::ostream& displayNode(BTNode<T>* current, std::ostream& out)const;
 
 public:
