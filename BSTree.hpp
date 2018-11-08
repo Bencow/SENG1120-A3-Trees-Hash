@@ -54,7 +54,7 @@ void BSTree<T>::remove(T target)
 
 		if(target_node == NULL)
 		{
-			// std::cout << target << " is not in the tree" << std::endl;
+			//this value is not in the tree
 		}
 		else
 		{
@@ -321,12 +321,4 @@ template<typename T>
 std::ostream& operator<<(std::ostream& out, const BSTree<T>& tree)
 {
 	return tree.display(out);
-}
-
-
-template <typename T>
-void BSTree<T>::test()
-{
-	std::cout << search_smallest(m_root)->get_data() << std::endl;
-	std::cout << search_biggest(m_root)->get_data() << std::endl;
 }

@@ -27,33 +27,48 @@ public:
 	~BTNode();
 
 	// Mutators
+	//Pre conditions: none
+	//Post conditions: copy the value passed as reference in the Node
 	void set_data(const T& val){ m_data = val; }
+
+	//Pre conditions: none
+	//Post conditions: set parent pointer to val
 	void set_parent(BTNode<T>* val){ m_parent = val; }
+
+	//Pre conditions: none
+	//Post conditions: set left pointer to val
 	void set_left(BTNode<T>* val){ m_left = val; }
+
+	//Pre conditions: none
+	//Post conditions: set right pointer to val
 	void set_right(BTNode<T>* val){ m_right = val; }
+
+
 	// Query
+	//Pre conditions: none
+	//Post conditions: return a copy of the data (nor a reference)
 	T get_data() const { return m_data; }
+
+	//Pre conditions: none
+	//Post conditions: return pointer to parent
 	BTNode<T>* get_parent(){ return m_parent; }
+
+	//Pre conditions: none
+	//Post conditions: return pointer to right child
 	BTNode<T>* get_right(){ return m_right; }
+
+	//Pre conditions: none
+	//Post conditions: return pointer to left child
 	BTNode<T>* get_left(){ return m_left; }
-	//Pre conditions:
-	//Post conditions:
+	
+	//Pre conditions: none
+	//Post conditions: return true if m_left and m_right are both pointing to NULL
 	bool is_a_leaf()const;
 
 
 };
 
 #include "BTNode.hpp"
-
-
-
-// void displayPointer(BTNode<T>* p, const std::ostream& out)
-// {
-// 	if(p == NULL)
-// 		out << "NULL";
-// 	else
-// 		out
-// }
 
 
 #endif
